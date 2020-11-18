@@ -1007,7 +1007,11 @@ class MimeTypes {
             'zirz' => 'application/vnd.zul',
             'zmm' => 'application/vnd.handheld-entertainment+xml',
         ];
-
+	    $file_path =  pathinfo( $filename );
+	    $dirname_array = explode('/', $file_path['dirname']);
+	    if(end($dirname_array) === 'feed'){
+		    return $mime_types[ 'rss' ];
+	    }
         $info = strtolower( pathinfo( $filename, PATHINFO_EXTENSION ) );
 
         if ( array_key_exists( $info, $mime_types ) ) {
